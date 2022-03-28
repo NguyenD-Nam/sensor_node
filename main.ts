@@ -9,13 +9,13 @@ basic.forever(function () {
     NPNLCD.ShowString("Temp:" + NPNBitKit.DHT11Temp() + "C", 0, 0)
     NPNLCD.ShowString("Humid:" + NPNBitKit.DHT11Hum() + "%", 0, 1)
     light2 = pins.analogReadPin(AnalogPin.P3)
-    if (light2 < 600) {
+    if (light2 < 700) {
         NPNLCD.ShowString("Night", 10, 0)
     } else {
         NPNLCD.ShowString("Day  ", 10, 0)
     }
     wind = pins.analogReadPin(AnalogPin.P10)
-    if (wind < 750) {
+    if (wind < 350) {
         NPNLCD.ShowString("Normal", 10, 1)
     } else {
         NPNLCD.ShowString("Windy ", 10, 1)
@@ -28,6 +28,6 @@ basic.forever(function () {
         pins.digitalWritePin(DigitalPin.P1, 1)
         pins.digitalWritePin(DigitalPin.P2, 0)
     }
-    serial.writeString("!TEMP:" + NPNBitKit.DHT11Temp() + "#" + "!HUMID:" + NPNBitKit.DHT11Hum() + "#" + "!WIND:" + pins.analogReadPin(AnalogPin.P10) + "#")
-    basic.pause(5000)
+    serial.writeString("!1:TEMP:" + NPNBitKit.DHT11Temp() + "#" + "!1:HUMID:" + NPNBitKit.DHT11Hum() + "#" + "!1:WIND:" + pins.analogReadPin(AnalogPin.P10) + "#")
+    basic.pause(6000)
 })
